@@ -1,6 +1,7 @@
 'use client'
 import { CheckCircle, Moon, BarChart, Lock, Wallet } from "lucide-react";
 import PiggyCanvas from '../../components/canvas/PiggyCanvas'
+import Image from 'next/image';
 
 const Hero = () => {
   const features = [
@@ -11,8 +12,7 @@ const Hero = () => {
     { icon: <Lock size={24} />, title: "Secure Login", desc: "Your data stays private with encryption & authentication." },
   ];
   return (
-   
-    <section className="">
+    <section className="relative">
       <div className="mt-[100px] -mb-10">
         <PiggyCanvas/>
       </div>
@@ -49,7 +49,14 @@ const Hero = () => {
       </div>
     </div>
       <div className='flex  justify-center'>
-        <img src="./spendsense.png" alt="demo-pic" width={'80%'} />
+        <Image
+          src="/spendsense.png"
+          alt="demo-pic"
+          width={1200}
+          height={675}
+          className="w-[80%] h-auto"
+          priority
+        />
       </div>
       
       <div className="py-16 bg-gray-50" id="features">
