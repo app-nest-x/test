@@ -1,26 +1,10 @@
-import { NextResponse } from "next/server";
-import { getAuth } from "@clerk/nextjs/server";
-import type { NextRequest } from "next/server";
+import { authMiddleware } from "@clerk/nextjs";
 
-const publicPaths = ["/", "/sign-in", "/sign-up"];
-
-const isPublic = (path: string) => {
-  return publicPaths.find((x) =>
-    path.match(new RegExp(`^${x}$`.replace("*$", "($|/)")))
-  );
-};
-
-export default async function middleware(req: NextRequest) {
-  const { userId } = await getAuth(req);
-  const path = req.nextUrl.pathname;
-
-  if (!isPublic(path) && !userId) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
-  }
-
-  return NextResponse.next();
-}
+export default authMiddleware({
+  publicRoutes: ["/", "/sign-in", "/sign-up", "/api/webhooks(.*)"],
+  debug: process.env.NODE_ENV === 'development'
+});
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
