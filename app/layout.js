@@ -1,23 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import { Roboto } from "next/font/google"; // Add Roboto import
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const roboto = Roboto({
-  variable: "--font-roboto",  // Add Roboto font variable
-  subsets: ["latin"],
-  weight:"500"
+  display: "swap",
 });
 
 export const metadata = {
@@ -29,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
+        <body className={inter.className}>
           <Toaster/>
           {children}
         </body>
