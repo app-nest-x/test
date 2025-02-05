@@ -26,11 +26,21 @@ export const metadata = {
   },
 };
 
+if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+  throw new Error("Missing Clerk Publishable Key");
+}
+
+if (!process.env.CLERK_SECRET_KEY) {
+  throw new Error("Missing Clerk Secret Key");
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider>
+        <ClerkProvider
+          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        >
           <Toaster/>
           {children}
         </ClerkProvider>
