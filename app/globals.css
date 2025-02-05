@@ -1,0 +1,55 @@
+/* global.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-roboto), sans-serif;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: #fff; /* Light mode background */
+  color: #333; /* Light mode text color */
+}
+
+/* Dark mode styles */
+body.dark {
+  background-color: #121212; /* Dark mode background */
+  color: #e5e5e5; /* Dark mode text color */
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+/* Tailwind dark mode classes for colors */
+.dark body {
+  background-color: #121212; /* Dark mode background */
+  color: #e5e5e5; /* Dark mode text color */
+}
+
+/* Additional customization for dark mode elements */
+.dark .bg-primary {
+  background-color: #3e2723; /* Primary dark mode background */
+}
+
+.dark .text-primary {
+  color: #d7ccc8; /* Primary dark mode text */
+}
+
+.dark .bg-muted {
+  background-color: hsl(42, 15%, 30%); /* Muted dark mode background */
+}
+
+.dark .text-muted {
+  color: hsl(42, 15%, 70%); /* Muted dark mode text */
+}
