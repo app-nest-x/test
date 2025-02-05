@@ -26,11 +26,28 @@ export const metadata = {
   },
 };
 
+function Fallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="text-center p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-4xl font-bold text-red-600 mb-4">Configuration Error</h1>
+        <p className="text-gray-500 mb-8">The application is not properly configured. Please check your environment variables.</p>
+      </div>
+    </div>
+  );
+}
+
 export default function RootLayout({ children }) {
   const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-  
+
   if (!publishableKey) {
-    throw new Error("Missing Clerk Publishable Key");
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+          <Fallback />
+        </body>
+      </html>
+    );
   }
 
   return (
