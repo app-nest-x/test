@@ -5,8 +5,8 @@
       "src": "package.json",
       "use": "@vercel/next",
       "config": {
-        "installCommand": "npm install --legacy-peer-deps && npm install tailwindcss@latest postcss@latest autoprefixer@latest",
-        "buildCommand": "npm run build"
+        "installCommand": "npm install --legacy-peer-deps",
+        "buildCommand": "next build"
       }
     }
   ]
