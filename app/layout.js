@@ -13,21 +13,17 @@ export const metadata = {
   description: "Your Personal Expense Tracker App",
 };
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ClerkProvider
-          publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-          signInUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL}
-          signUpUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
-          afterSignInUrl={process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL}
-          afterSignUpUrl={process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
-        >
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
+      <html lang="en">
+        <body className={inter.className}>
           <Toaster/>
           {children}
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
