@@ -6,30 +6,27 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
   publicRoutes: [
     "/",
-    "/sign-in*",
-    "/sign-up*",
-    "/api/webhooks*",
-    "/api/trpc*",
-    "/_next*",
+    "/sign-in(.*)",
+    "/sign-up(.*)",
+    "/api(.*)",
+    "/_next(.*)",
     "/favicon.ico",
+    "/public(.*)",
+    "/model.glb",
+    "/logo.svg",
+    "/spendsense.png",
+    "/icon.png"
   ],
   ignoredRoutes: [
-    "/((?!api|trpc))(_next|.*\\..*|favicon.ico)(.*)",
+    "/((?!api|trpc))(_next|.*\\.[\\w]+$)",
     "/api/webhooks(.*)",
-    "/_next/static(.*)",
   ],
   debug: process.env.NODE_ENV === 'development'
 });
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    "/((?!_next/static|_next/image|favicon.ico|public/).*)",
+    "/((?!.*\\.[\\w]+$|_next).*)", // exclude static files
+    "/",
   ],
 };

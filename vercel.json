@@ -5,5 +5,13 @@
       "src": "next.config.js",
       "use": "@vercel/next"
     }
-  ]
+  ],
+  "env": {
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_ZXhvdGljLXBvbGVjYXQtNTkuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "CLERK_SECRET_KEY": "sk_test_28D923iTHvZm9punu1uUJDh5EeJ2TDz5fBK0ApgJCY",
+    "NEXT_PUBLIC_CLERK_SIGN_IN_URL": "/sign-in",
+    "NEXT_PUBLIC_CLERK_SIGN_UP_URL": "/sign-up",
+    "NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL": "/",
+    "NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL": "/"
+  }
 } 
