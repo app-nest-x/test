@@ -12,26 +12,31 @@ export const metadata = {
   title: "Expense Tracker",
   description: "Your Personal Expense Tracker App",
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-      {
-        url: "/icon.png",
-        type: "image/png",
-        sizes: "32x32",
-      },
-    ],
+    icon: "/favicon.ico",
+    apple: "/icon.png",
   },
 };
 
 export default function RootLayout({ children }) {
+  const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+  if (!publishableKey) {
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+          <div className="flex min-h-screen items-center justify-center">
+            <p>Loading...</p>
+          </div>
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClerkProvider>
-          <Toaster/>
+        <ClerkProvider publishableKey={publishableKey}>
+          <Toaster />
           {children}
         </ClerkProvider>
       </body>
